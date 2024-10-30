@@ -1,0 +1,66 @@
+<mat-toolbar color="primary">
+    <!-- <button mat-icon-button class="example-icon"
+        aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button> -->
+    <span>M-Play</span>
+    <span class="example-spacer"></span>
+
+    <!-- <section>
+        <div class="example-button-row">
+            <div class="example-flex-container">
+                <button mat-icon-button [matMenuTriggerFor]="notifications">
+                    <mat-icon matBadge="5"
+                        matBadgeColor="warn">notifications</mat-icon>
+                </button>
+                <mat-menu #notifications="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>chat</mat-icon>
+                        <span>3 new messages</span>
+                    </button>
+                    <mat-divider></mat-divider>
+                    <button mat-menu-item>
+                        <mat-icon>group</mat-icon>
+                        <span>8 friend requests</span>
+                    </button>
+                    <mat-divider></mat-divider>
+                    <button mat-menu-item>
+                        <mat-icon>thumb_up</mat-icon>
+                        <span>102 friends like your post</span>
+                    </button>
+                    <mat-divider></mat-divider>
+                    <button mat-menu-item class="textCenter"
+                        routerLink="/notification">
+                        <span>See All Notifications</span>
+                    </button>
+
+                </mat-menu>
+                
+
+            </div>
+        </div>
+    </section> -->
+
+    <span>Welcome Mahipal</span>
+    <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/dashboard">
+            <mat-icon>dashboard</mat-icon>
+            <span>Dashboard</span>
+        </button>
+        <button mat-menu-item routerLink="/profile">
+            <mat-icon>account_circle</mat-icon>
+            <span>Profile</span>
+        </button>
+        <button mat-menu-item routerLink="/changepassword">
+            <mat-icon>lock_reset</mat-icon>
+            <span>Change Password</span>
+        </button>
+        <button mat-menu-item (click)="onLogout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
+    </mat-menu>
+</mat-toolbar>

@@ -1,0 +1,9 @@
+<div class="home" fxLayout="column" fxLayoutAlign="center center">
+    <h2>Trending Songs</h2>
+    <mat-card *ngFor="let song of trendingSongs" class="song-card">
+      <mat-card-title>{{ song.title }}</mat-card-title>
+      <mat-card-content>
+        <p>{{ song.artist }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>

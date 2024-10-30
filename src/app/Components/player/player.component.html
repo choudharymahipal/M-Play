@@ -1,0 +1,16 @@
+<div class="player" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card>
+      <img mat-card-image [src]="currentSong.albumCover" alt="Album cover">
+      <mat-card-content>
+        <h2>{{ currentSong.title }}</h2>
+        <p>{{ currentSong.artist }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button (click)="previousTrack()"><mat-icon>skip_previous</mat-icon></button>
+        <button mat-icon-button (click)="togglePlay()">
+          <mat-icon>{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon>
+        </button>
+        <button mat-icon-button (click)="nextTrack()"><mat-icon>skip_next</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+  </div>

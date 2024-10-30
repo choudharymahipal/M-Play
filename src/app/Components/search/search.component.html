@@ -1,0 +1,14 @@
+<div class="search">
+    <mat-form-field appearance="outline" class="search-bar">
+      <mat-label>Search for a song</mat-label>
+      <input matInput (keyup)="onSearch($event)" placeholder="Type song name">
+      <button mat-icon-button matSuffix (click)="onClearSearch()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+  
+    <mat-card *ngFor="let song of searchResults" class="song-card">
+      <mat-card-title>{{ song.title }}</mat-card-title>
+      <mat-card-subtitle>{{ song.artist }}</mat-card-subtitle>
+    </mat-card>
+  </div>

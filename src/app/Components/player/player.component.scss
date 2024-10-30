@@ -1,0 +1,21 @@
+.player {
+    mat-card {
+      max-width: 400px;
+      text-align: center;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+      color: mat-color($primary-color, 700);
+    }
+  
+    mat-card-image {
+      height: 200px;
+      object-fit: cover;
+    }
+  
+    mat-card-actions {
+      display: flex;
+      justify-content: center;
+    }
+  }
