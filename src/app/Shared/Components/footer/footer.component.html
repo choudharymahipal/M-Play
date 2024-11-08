@@ -1,1 +1,48 @@
-<p>footer works!</p>
+<footer>
+    <div class="songDiv">
+        <!-- left side -->
+        <div>
+            <img class="songImg" src="https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg" />
+        </div>
+        <div class="songDetails">
+            <p class="songTitle">Chaleya</p>
+            <p class="songPlayedBy">Anirudh Ravichander, Arijit Singh</p>
+        </div>
+
+        <!-- Center -->
+        <div class="playerControls">
+            <div class="topControls">
+                <mat-icon aria-hidden="false" aria-label="Example home icon"
+                    fontIcon="skip_previous"
+                    class="skip_previous_btn"></mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Example home icon"
+                    fontIcon="play_circle" class="play_circle_btn"
+                    *ngIf="!isPlaying" (click)="playPauseButton()"></mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Example home icon"
+                    fontIcon="pause_circle" class="pause_circle_btn"
+                    *ngIf="isPlaying" (click)="playPauseButton()"></mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Example home icon"
+                    fontIcon="skip_next" class="skip_next_btn"></mat-icon>
+            </div>
+            <div class="playerTimeline">
+                <p class="leftTimer">01:30</p>
+                <mat-progress-bar mode="determinate" value="40"
+                    color="warn" class="progressBar"></mat-progress-bar>
+                <p class="rightTimer">05:09</p>
+            </div>
+        </div>
+
+        <!-- Right side -->
+        <div class="volumeDiv">
+            <!-- <mat-icon aria-hidden="false" aria-label="Example home icon"
+                fontIcon="volume_down"></mat-icon> -->
+            <mat-icon aria-hidden="false" aria-label="Example home icon"
+                fontIcon="volume_up" class="volumeBtn" (click)="volumeClicked()" *ngIf="isValume"></mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Example home icon"
+                fontIcon="volume_off" class="volumeBtn" (click)="volumeClicked()" *ngIf="!isValume"></mat-icon>
+            <mat-slider color="warn">
+                <input matSliderThumb>
+            </mat-slider>
+        </div>
+    </div>
+</footer>
