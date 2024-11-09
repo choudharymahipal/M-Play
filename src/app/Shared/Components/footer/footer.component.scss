@@ -45,36 +45,48 @@ footer {
 
   .topControls {
     text-align: center;
-    height: 25px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
     .skip_previous_btn {
       cursor: pointer;
-      padding: 10px;
-      //   font-size: 100px;
+      padding: 5px;
+      font-size: 40px;
+      width: 40px;
+      height: 40px;
     }
 
     .play_circle_btn {
       cursor: pointer;
-      padding: 10px;
-      //   font-size: 150px;
+      padding: 5px;
+      width: 50px;
+      height: 40px;
+      font-size: 40px;
     }
 
     .pause_circle_btn {
       cursor: pointer;
-      padding: 10px;
-      // font-size: 150px;
+      padding: 5px;
+      width: 50px;
+      height: 40px;
+      font-size: 40px;
     }
 
     .skip_next_btn {
       cursor: pointer;
-      padding: 10px;
-      // font-size: 100px;
+      padding: 5px;
+      font-size: 40px;
+      width: 40px;
+      height: 40px;
     }
   }
 
   .playerTimeline {
     display: flex;
     flex-direction: row;
-    padding: 15px 0px 0px 0px;
+    height: 100%;
     align-items: center;
     vertical-align: middle;
 

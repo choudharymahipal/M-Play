@@ -58,6 +58,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './Shared/Components/header/header.component';
 import { FooterComponent } from './Shared/Components/footer/footer.component';
+import { MusicLibraryComponent } from './Shared/Components/music-library/music-library.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { FooterComponent } from './Shared/Components/footer/footer.component';
     SearchComponent,
     PlayerComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MusicLibraryComponent
   ],
   imports: [
     BrowserModule,

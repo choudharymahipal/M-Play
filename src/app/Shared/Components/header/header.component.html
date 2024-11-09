@@ -1,8 +1,8 @@
 <mat-toolbar color="primary">
-    <!-- <button mat-icon-button class="example-icon"
+    <button mat-icon-button class="example-icon"
         aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-    </button> -->
+        <mat-icon>music_note</mat-icon>
+    </button>
     <span>M-Play</span>
     <span class="example-spacer"></span>
 
@@ -41,7 +41,16 @@
         </div>
     </section> -->
 
-    <span>Welcome Mahipal</span>
+    <section>
+        <header>
+            <button mat-icon-button (click)="toggleTheme()" title="{{theme}}">
+                <mat-icon>{{ theme === 'light-theme' ? 'light_mode' :
+                    'dark_mode' }}</mat-icon>
+            </button>
+        </header>
+    </section>
+
+    <!-- <span>Welcome Mahipal</span>
     <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
     </button>
@@ -62,5 +71,5 @@
             <mat-icon>logout</mat-icon>
             <span>Logout</span>
         </button>
-    </mat-menu>
+    </mat-menu> -->
 </mat-toolbar>

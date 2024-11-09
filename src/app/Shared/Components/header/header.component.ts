@@ -6,7 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-
+  theme: 'light-theme' | 'dark-theme' = 'light-theme';
+  IsDrawer: boolean = true;
+  
+  toggleTheme() {
+    this.theme = this.theme === 'light-theme' ? 'dark-theme' : 'light-theme';
+  }
   onLogout(){
     //
   }

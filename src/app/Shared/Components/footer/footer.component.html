@@ -12,17 +12,24 @@
         <!-- Center -->
         <div class="playerControls">
             <div class="topControls">
-                <mat-icon aria-hidden="false" aria-label="Example home icon"
+                <div>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon"
                     fontIcon="skip_previous"
                     class="skip_previous_btn"></mat-icon>
-                <mat-icon aria-hidden="false" aria-label="Example home icon"
+                </div>
+                <div>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon"
                     fontIcon="play_circle" class="play_circle_btn"
                     *ngIf="!isPlaying" (click)="playPauseButton()"></mat-icon>
-                <mat-icon aria-hidden="false" aria-label="Example home icon"
+
+                    <mat-icon aria-hidden="false" aria-label="Example home icon"
                     fontIcon="pause_circle" class="pause_circle_btn"
                     *ngIf="isPlaying" (click)="playPauseButton()"></mat-icon>
-                <mat-icon aria-hidden="false" aria-label="Example home icon"
+                </div>
+                <div>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon"
                     fontIcon="skip_next" class="skip_next_btn"></mat-icon>
+                </div>
             </div>
             <div class="playerTimeline">
                 <p class="leftTimer">01:30</p>

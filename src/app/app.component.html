@@ -1,10 +1,4 @@
-<div [ngClass]="theme">
-  <!-- <header>
-    <button mat-icon-button (click)="toggleTheme()">
-      <mat-icon>{{ theme === 'light-theme' ? 'dark_mode' : 'light_mode' }}</mat-icon>
-    </button>
-  </header> -->
-  <mahi-header></mahi-header>
-  <router-outlet></router-outlet>
-  <mahi-footer></mahi-footer>
-</div>
+<mahi-header></mahi-header>
+<!-- <router-outlet class="vanta-bg"></router-outlet> -->
+<router-outlet></router-outlet>
+<mahi-footer></mahi-footer>
