@@ -1,55 +1,28 @@
-<footer>
-    <div class="songDiv">
-        <!-- left side -->
-        <div>
-            <img class="songImg" src="https://c.saavncdn.com/026/Chaleya-From-Jawan-Hindi-2023-20230814014337-500x500.jpg" />
+<footer class="player-bar">
+    <ng-container *ngIf="music.currentTrack$ | async as track; else emptyPlayer">
+        <div class="track-summary">
+            <img [src]="track.artworkUrl" [alt]="track.album + ' artwork'">
+            <div class="track-copy"><strong>{{ track.title }}</strong><span>{{ track.artist }}</span><span class="playback-error" *ngIf="music.playbackError$ | async as playbackError">{{ playbackError }}</span></div>
+            <button mat-icon-button (click)="music.toggleFavorite(track)" [attr.aria-label]="music.isFavorite(track) ? 'Remove from library' : 'Save to library'"><mat-icon>{{ music.isFavorite(track) ? 'favorite' : 'favorite_border' }}</mat-icon></button>
         </div>
-        <div class="songDetails">
-            <p class="songTitle">Chaleya</p>
-            <p class="songPlayedBy">Anirudh Ravichander, Arijit Singh</p>
-        </div>
-
-        <!-- Center -->
-        <div class="playerControls">
-            <div class="topControls">
-                <div>
-                    <mat-icon aria-hidden="false" aria-label="Example home icon"
-                    fontIcon="skip_previous"
-                    class="skip_previous_btn"></mat-icon>
-                </div>
-                <div>
-                    <mat-icon aria-hidden="false" aria-label="Example home icon"
-                    fontIcon="play_circle" class="play_circle_btn"
-                    *ngIf="!isPlaying" (click)="playPauseButton()"></mat-icon>
-
-                    <mat-icon aria-hidden="false" aria-label="Example home icon"
-                    fontIcon="pause_circle" class="pause_circle_btn"
-                    *ngIf="isPlaying" (click)="playPauseButton()"></mat-icon>
-                </div>
-                <div>
-                    <mat-icon aria-hidden="false" aria-label="Example home icon"
-                    fontIcon="skip_next" class="skip_next_btn"></mat-icon>
-                </div>
+        <section class="playback-controls" aria-label="Playback controls">
+            <div class="control-buttons">
+                <button mat-icon-button aria-label="Previous track" (click)="music.previousTrack()"><mat-icon>skip_previous</mat-icon></button>
+                <button mat-fab color="primary" aria-label="Play or pause" (click)="music.togglePlayback()"><mat-icon>{{ (music.isPlaying$ | async) ? 'pause' : 'play_arrow' }}</mat-icon></button>
+                <button mat-icon-button aria-label="Next track" (click)="music.nextTrack()"><mat-icon>skip_next</mat-icon></button>
             </div>
-            <div class="playerTimeline">
-                <p class="leftTimer">01:30</p>
-                <mat-progress-bar mode="determinate" value="40"
-                    color="warn" class="progressBar"></mat-progress-bar>
-                <p class="rightTimer">05:09</p>
+            <div class="timeline">
+                <span>{{ formatTime((music.progress$ | async) || 0) }}</span>
+                <mat-slider min="0" [max]="music.duration || 1" step="1" class="seek-slider"><input matSliderThumb [value]="(music.progress$ | async) || 0" (input)="seek($event)"></mat-slider>
+                <span>{{ formatTime((music.duration$ | async) || 0) }}</span>
             </div>
+        </section>
+        <div class="volume-control">
+            <mat-icon>{{ ((music.volume$ | async) || 0) === 0 ? 'volume_off' : 'volume_up' }}</mat-icon>
+            <mat-slider min="0" max="1" step="0.01"><input matSliderThumb [value]="(music.volume$ | async) || 0" (input)="setVolume($event)"></mat-slider>
         </div>
-
-        <!-- Right side -->
-        <div class="volumeDiv">
-            <!-- <mat-icon aria-hidden="false" aria-label="Example home icon"
-                fontIcon="volume_down"></mat-icon> -->
-            <mat-icon aria-hidden="false" aria-label="Example home icon"
-                fontIcon="volume_up" class="volumeBtn" (click)="volumeClicked()" *ngIf="isValume"></mat-icon>
-            <mat-icon aria-hidden="false" aria-label="Example home icon"
-                fontIcon="volume_off" class="volumeBtn" (click)="volumeClicked()" *ngIf="!isValume"></mat-icon>
-            <mat-slider color="warn">
-                <input matSliderThumb>
-            </mat-slider>
-        </div>
-    </div>
+    </ng-container>
+    <ng-template #emptyPlayer>
+        <div class="empty-player"><mat-icon>music_note</mat-icon><span>Choose a track to start listening</span><a mat-button routerLink="/search">Browse music</a></div>
+    </ng-template>
 </footer>

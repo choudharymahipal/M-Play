@@ -1,36 +1,49 @@
-import { Component } from '@angular/core';
-import { trigger, transition, style, animate } from '@angular/animations';
-import { MusicService } from '../../Services/music.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { forkJoin, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { MusicService, Track } from '../../Services/music.service';
 
-
-interface Song {
+interface Collection {
   title: string;
-  artist: string;
-  albumCover: string;
+  query: string;
+  tracks: Track[];
 }
 
 @Component({
   selector: 'mahi-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
-  animations: [
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('500ms', style({ opacity: 1 })),
-      ]),
-    ]),
-  ],
+  styleUrl: './home.component.scss'
 })
-export class HomeComponent {
-  trendingSongs: Song[] = [
-    { title: 'Song 1', artist: 'Artist 1', albumCover: 'path/to/albumCover1.jpg' },
-    { title: 'Song 2', artist: 'Artist 2', albumCover: 'path/to/albumCover2.jpg' },
-    { title: 'Song 3', artist: 'Artist 3', albumCover: 'path/to/albumCover3.jpg' },
-    // Add more songs or fetch from an API
+export class HomeComponent implements OnInit {
+  readonly prompts = [
+    { title: 'Fresh finds', query: 'indie pop' },
+    { title: 'After hours', query: 'chill electronic' },
+    { title: 'Guitar season', query: 'alternative rock' },
+    { title: 'Good energy', query: 'upbeat pop' }
   ];
+  collections: Collection[] = [];
+  loading = true;
+
+  constructor(private music: MusicService, private router: Router) {}
 
   ngOnInit(): void {
-    // Fetch trending songs from an API if available
+    forkJoin(this.prompts.map(prompt =>
+      this.music.searchTracks(prompt.query, 12).pipe(catchError(() => of([])))
+    )).subscribe(results => {
+      this.collections = this.prompts.map((prompt, index) => ({
+        ...prompt,
+        tracks: results[index]
+      }));
+      this.loading = false;
+    });
+  }
+
+  play(track: Track, tracks: Track[]): void {
+    this.music.playTrack(track, tracks);
+  }
+
+  search(query: string): void {
+    void this.router.navigate(['/search'], { queryParams: { q: query } });
   }
 }

@@ -1,112 +1,38 @@
 
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <!-- Card1 -->
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            Card 1
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
+<section class="home-page">
+  <div class="welcome-row">
+    <div>
+      <p class="eyebrow">YOUR DAILY MIX</p>
+      <h1>Find your next<br>favorite sound.</h1>
+      <p class="intro">New discoveries, familiar favorites, and the songs in between.</p>
+    </div>
+    <button mat-flat-button color="primary" routerLink="/search"><mat-icon>search</mat-icon> Explore music</button>
+  </div>
+
+  <nav class="mood-list" aria-label="Browse by mood">
+    <button mat-stroked-button *ngFor="let prompt of prompts" (click)="search(prompt.query)">{{ prompt.title }}</button>
+  </nav>
+
+  <div class="loading-state" *ngIf="loading"><mat-spinner diameter="34"></mat-spinner><span>Building your mix</span></div>
+
+  <section class="collection" *ngFor="let collection of collections">
+    <div class="section-heading">
+      <div><p class="eyebrow">MADE FOR YOUR MOMENT</p><h2>{{ collection.title }}</h2></div>
+      <button mat-button (click)="search(collection.query)">See all <mat-icon>arrow_forward</mat-icon></button>
+    </div>
+    <div class="track-grid">
+      <mat-card class="track-card" *ngFor="let track of collection.tracks">
+        <button class="cover-button" mat-button (click)="play(track, collection.tracks)" [attr.aria-label]="'Play ' + track.title">
+          <img mat-card-image [src]="track.artworkUrl" [alt]="track.album + ' artwork'" loading="lazy">
+          <span class="play-overlay"><mat-icon>play_arrow</mat-icon></span>
+        </button>
+        <mat-card-content>
+          <button mat-button class="track-title" (click)="play(track, collection.tracks)">{{ track.title }}</button>
+          <p>{{ track.artist }}</p>
         </mat-card-content>
       </mat-card>
-    </mat-grid-tile>
+    </div>
+    <p class="empty-state" *ngIf="!loading && !collection.tracks.length">This mix could not be loaded right now.</p>
+  </section>
+</section>
 
-    <!-- Card2 -->
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            Card 2
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-    <!-- Card3 -->
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            Card 3
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-    <!-- Card4 -->
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            Card 4
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-    <!-- Card5 -->
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            Card 5
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-  </mat-grid-list>
-</div>
-  

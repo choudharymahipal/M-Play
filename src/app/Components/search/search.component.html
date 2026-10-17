@@ -1,14 +1,31 @@
-<div class="search">
-    <mat-form-field appearance="outline" class="search-bar">
-      <mat-label>Search for a song</mat-label>
-      <input matInput (keyup)="onSearch($event)" placeholder="Type song name">
-      <button mat-icon-button matSuffix (click)="onClearSearch()">
-        <mat-icon>clear</mat-icon>
-      </button>
-    </mat-form-field>
-  
-    <mat-card *ngFor="let song of searchResults" class="song-card">
-      <mat-card-title>{{ song.title }}</mat-card-title>
-      <mat-card-subtitle>{{ song.artist }}</mat-card-subtitle>
-    </mat-card>
+<section class="search-page">
+  <p class="eyebrow">SEARCH THE CATALOG</p>
+  <h1>What do you want to hear?</h1>
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Artists, songs, albums</mat-label>
+    <mat-icon matPrefix>search</mat-icon>
+    <input matInput [formControl]="searchControl" autocomplete="off" placeholder="Try an artist or a song">
+    <button mat-icon-button matSuffix *ngIf="searchControl.value" (click)="onClearSearch()" aria-label="Clear search"><mat-icon>close</mat-icon></button>
+  </mat-form-field>
+
+  <div class="suggestions" *ngIf="!searchControl.value">
+    <span>Try a mood</span>
+    <button mat-stroked-button *ngFor="let suggestion of suggestions" (click)="searchFor(suggestion)">{{ suggestion }}</button>
   </div>
+  <div class="loading-state" *ngIf="loading"><mat-spinner diameter="30"></mat-spinner><span>Searching the music library</span></div>
+  <p class="error-state" *ngIf="hasError">Search is unavailable right now. Check your connection and try again.</p>
+
+  <section class="results" *ngIf="searchResults.length">
+    <h2>Tracks</h2>
+    <mat-card class="result-row" *ngFor="let track of searchResults; let index = index">
+      <span class="track-index">{{ index + 1 }}</span>
+      <img [src]="track.artworkUrl" [alt]="track.album + ' artwork'" loading="lazy">
+      <div class="result-info"><strong>{{ track.title }}</strong><span>{{ track.artist }} · {{ track.album }}</span></div>
+      <button mat-icon-button (click)="music.toggleFavorite(track)" [attr.aria-label]="music.isFavorite(track) ? 'Remove from library' : 'Save to library'" [matTooltip]="music.isFavorite(track) ? 'Remove from library' : 'Save to library'"><mat-icon>{{ music.isFavorite(track) ? 'favorite' : 'favorite_border' }}</mat-icon></button>
+      <button mat-icon-button color="primary" (click)="play(track)" [attr.aria-label]="'Play ' + track.title"><mat-icon>play_arrow</mat-icon></button>
+    </mat-card>
+  </section>
+  <div class="no-results" *ngIf="searchControl.value && !loading && !hasError && !searchResults.length">
+    <mat-icon>music_off</mat-icon><h2>No tracks found</h2><p>Try another title, artist, or mood.</p>
+  </div>
+</section>

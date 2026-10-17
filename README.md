@@ -1,10 +1,10 @@
-# MPlay
+# M-Play
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+An Angular Material music-discovery app with a shared preview player, search, and a browser-persisted liked-songs library.
 
-## Development server
+## Run locally
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm install` and `npm start`, then open `http://localhost:4200/`. Run `npm test -- --watch=false --browsers=ChromeHeadless` for unit tests or `npm run build` for a production build.
 
 ## Code scaffolding
 
@@ -22,6 +22,6 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## Music catalog
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Search and browse use Apple's public iTunes Search API; no API key is required. Playback is limited to the preview audio URLs returned by that API, typically around 30 seconds per track. This app does not provide full-song streaming, user accounts, or cloud-synced playlists. Liked tracks and the selected color theme are stored in the current browser's local storage.

@@ -1,21 +1,16 @@
-.player {
-    mat-card {
-      max-width: 400px;
-      text-align: center;
-    }
-  
-    h2 {
-      font-size: 1.5rem;
-      color: #000;
-    }
-  
-    mat-card-image {
-      height: 200px;
-      object-fit: cover;
-    }
-  
-    mat-card-actions {
-      display: flex;
-      justify-content: center;
-    }
-  }
+.player-page { max-width: 900px; margin: 0 auto; padding: 38px 5vw 48px; }
+.eyebrow { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: 1px; }
+.now-playing { display: grid; grid-template-columns: minmax(240px, 42%) 1fr; gap: 24px; padding: 24px; background: var(--surface); }
+.now-playing img { width: 100%; aspect-ratio: 1; object-fit: cover; margin: 0; border-radius: 4px; }
+.now-playing mat-card-content { align-self: center; min-width: 0; padding: 12px; }
+h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.08; margin: 8px 0; overflow-wrap: anywhere; }
+.artist { color: var(--muted); font-size: 16px; }
+.player-actions { display: flex; align-items: center; gap: 12px; margin: 34px 0 20px; }
+.timeline { display: grid; grid-template-columns: 38px minmax(0, 1fr) 38px; gap: 10px; align-items: center; color: var(--muted); font-size: 12px; }
+.timeline span:last-child { text-align: right; }
+.seek-slider { width: 100%; }
+.preview-note { color: var(--muted); font-size: 12px; margin-top: 24px; }
+.empty-player { min-height: 55vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 30px; color: var(--muted); }
+.empty-player > mat-icon { width: 52px; height: 52px; font-size: 52px; color: var(--accent); }
+.empty-player h1 { color: var(--text); }
+@media (max-width: 650px) { .player-page { padding: 26px 16px 36px; } .now-playing { display: block; padding: 12px; } .now-playing img { max-width: 420px; margin: 0 auto; } .now-playing mat-card-content { padding: 14px 4px 4px; } .player-actions { justify-content: center; margin: 22px 0; } }

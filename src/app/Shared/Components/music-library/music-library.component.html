@@ -1,86 +1,15 @@
-<h3 class="blueText">Home</h3>
-<div class="example-menu">
-    <button class="example-menu-item" routerLink="/">All Blocks One View</button>
-    <!--
-    <button class="example-menu-item" routerLink="/login/login_two">
-        Login Example 02
-    </button>
- -->
-    <!-- <button class="example-menu-item" routerLink="/login/login_three">
-        Login 3 screen
-    </button> -->
-</div>
-<mat-divider class="marginBottom"></mat-divider>
-<h3 class="blueText">LOGIN</h3>
-<div class="example-menu">
-    <button class="example-menu-item" routerLink="/login/login_one">Login
-        Example 01</button>
-    <!--
-    <button class="example-menu-item" routerLink="/login/login_two">
-        Login Example 02
-    </button>
- -->
-    <!-- <button class="example-menu-item" routerLink="/login/login_three">
-        Login 3 screen
-    </button> -->
-</div>
-<mat-divider class="marginBottom"></mat-divider>
-<h3 class="blueText">DASHBOARD</h3>
-<div class="example-menu">
-    <button class="example-menu-item" routerLink="/dashboard/dashboard_one">
-        Dashboard Example 01
-    </button>
-    <button class="example-menu-item" routerLink="/dashboard/dashboard_two">
-        Dashboard Example 02
-    </button>
-    <!-- <button class="example-menu-item" routerLink="/header/header_three">
-        Header 3 screen
-    </button> -->
-</div>
-<mat-divider class="marginBottom"></mat-divider>
-<h3 class="blueText">HEADER</h3>
-<div class="example-menu">
-    <button class="example-menu-item" routerLink="/header/header_one">
-        Header Example 01
-    </button>
-    <button class="example-menu-item" routerLink="/header/header_two">
-        Header Example 02
-    </button>
-    <button class="example-menu-item" routerLink="/header/header_three">
-        Header Example 03
-    </button>
-</div>
-<mat-divider class="marginBottom"></mat-divider>
-<h3 class="blueText">FOOTER</h3>
-<div class="example-menu">
-    <button class="example-menu-item" routerLink="/footer/footer_one">
-        Footer Example 01
-    </button>
-    <button class="example-menu-item" routerLink="/footer/footer_two">
-        Footer Example 02
-    </button>
-    <!-- <button class="example-menu-item" routerLink="/footer/footer_three">
-        Footer 3 screen
-    </button> -->
-</div>
-<mat-divider class="marginBottom"></mat-divider>
-<h3 class="blueText">BLOG</h3>
-<div class="example-menu">
-    <button class="example-menu-item" routerLink="/blog/blog_one">
-        Blog Example 01
-    </button>
-    <button class="example-menu-item" routerLink="/blog/blog_two">
-        Blog Example 02
-    </button>
-    <!-- <button class="example-menu-item" routerLink="/blog/blog_three">
-        Blog 3 screen
-    </button> -->
-</div>
-<mat-divider class="marginBottom"></mat-divider>
-<h3 class="blueText">ICONS</h3>
-<div class="example-menu">
-    <button class="example-menu-item" routerLink="/icons/materialicons">
-        Material Icons
-    </button>
-</div>
-<mat-divider class="marginBottom"></mat-divider>
+<section class="library-page">
+  <p class="eyebrow">YOUR COLLECTION</p>
+  <h1>Liked songs</h1>
+  <ng-container *ngIf="favorites$ | async as tracks">
+    <p class="library-count">{{ tracks.length }} saved {{ tracks.length === 1 ? 'track' : 'tracks' }}</p>
+    <mat-card class="library-row" *ngFor="let track of tracks; let index = index">
+      <span class="track-index">{{ index + 1 }}</span>
+      <img [src]="track.artworkUrl" [alt]="track.album + ' artwork'" loading="lazy">
+      <div class="track-info"><strong>{{ track.title }}</strong><span>{{ track.artist }} · {{ track.album }}</span></div>
+      <button mat-icon-button (click)="music.toggleFavorite(track)" aria-label="Remove from liked songs"><mat-icon>favorite</mat-icon></button>
+      <button mat-icon-button color="primary" (click)="play(track, tracks)" [attr.aria-label]="'Play ' + track.title"><mat-icon>play_arrow</mat-icon></button>
+    </mat-card>
+    <div class="empty-library" *ngIf="!tracks.length"><mat-icon>favorite_border</mat-icon><h2>Your library starts here</h2><p>Save tracks from search to keep them close.</p><button mat-flat-button color="primary" routerLink="/search">Browse music</button></div>
+  </ng-container>
+</section>

@@ -1,118 +1,19 @@
-footer {
-  bottom: 0;
-  width: 100%;
-  position: fixed;
-  color: #fff;
-  background-color: #3f51b5;
-  align-items: center;
-  white-space: nowrap;
-}
-
-.songDiv {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-}
-
-.songImg {
-  width: 70px;
-  height: 70px;
-  background-color: gray;
-  border-radius: 5px;
-}
-
-.songDetails {
-  padding: 0px 10px 0px 10px;
-  .songTitle {
-    font-size: 20px;
-    line-height: 32px;
-    font-weight: 500;
-  }
-
-  .songPlayedBy {
-    font-size: 15px;
-    line-height: 10px;
-    font-weight: 500;
-  }
-}
-
-.playerControls {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  padding-left: 20px;
-  padding-right: 20px;
-
-  .topControls {
-    text-align: center;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-    .skip_previous_btn {
-      cursor: pointer;
-      padding: 5px;
-      font-size: 40px;
-      width: 40px;
-      height: 40px;
-    }
-
-    .play_circle_btn {
-      cursor: pointer;
-      padding: 5px;
-      width: 50px;
-      height: 40px;
-      font-size: 40px;
-    }
-
-    .pause_circle_btn {
-      cursor: pointer;
-      padding: 5px;
-      width: 50px;
-      height: 40px;
-      font-size: 40px;
-    }
-
-    .skip_next_btn {
-      cursor: pointer;
-      padding: 5px;
-      font-size: 40px;
-      width: 40px;
-      height: 40px;
-    }
-  }
-
-  .playerTimeline {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    align-items: center;
-    vertical-align: middle;
-
-    .leftTimer{
-        padding: 0px 10px 0px 10px;
-    }
-
-    .rightTimer{
-        padding: 0px 10px 0px 10px;
-    }
-
-    .progressBar{
-        margin-bottom: 12px;
-    }
-  }
-}
-
-.volumeDiv {
-  width: 20%;
-  align-items: center;
-  padding: 10px;
-  display: flex;
-  flex-direction: row-reverse;
-
-  .volumeBtn {
-    padding: 10px;
-    cursor: pointer;
-  }
-}
+.player-bar { position: fixed; z-index: 20; inset: auto 0 0; min-height: 86px; display: grid; grid-template-columns: minmax(180px, 1fr) minmax(260px, 1.2fr) minmax(130px, .7fr); align-items: center; gap: 20px; padding: 10px 24px; color: var(--text); background: var(--bar); border-top: 1px solid var(--line); }
+.track-summary { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.track-summary img { width: 54px; height: 54px; object-fit: cover; border-radius: 3px; }
+.track-copy { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.track-copy strong, .track-copy span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.track-copy span { color: var(--muted); font-size: 12px; }
+.track-copy .playback-error { color: #ff9c8f; font-size: 10px; }
+.track-summary > button { flex: none; }
+.playback-controls { min-width: 0; }
+.control-buttons { display: flex; align-items: center; justify-content: center; gap: 12px; height: 44px; }
+.control-buttons button[mat-fab] { width: 40px; height: 40px; }
+.timeline { display: grid; grid-template-columns: 34px minmax(0, 1fr) 34px; align-items: center; gap: 9px; color: var(--muted); font-size: 11px; }
+.timeline span:last-child { text-align: right; }
+.seek-slider { width: 100%; }
+.volume-control { display: flex; align-items: center; gap: 8px; justify-content: end; }
+.volume-control mat-slider { max-width: 120px; }
+.empty-player { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 12px; color: var(--muted); }
+.empty-player mat-icon { color: var(--accent); }
+@media (max-width: 720px) { .player-bar { grid-template-columns: minmax(0, 1fr) minmax(140px, .8fr); gap: 6px 12px; padding: 8px 12px; min-height: 76px; } .track-summary img { width: 44px; height: 44px; } .track-summary > button, .volume-control { display: none; } .control-buttons { justify-content: end; } .timeline { grid-column: 1 / -1; } .empty-player { justify-content: space-between; gap: 4px; font-size: 12px; } }

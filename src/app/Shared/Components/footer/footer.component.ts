@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MusicService } from '../../../Services/music.service';
 
 @Component({
   selector: 'mahi-footer',
@@ -6,14 +7,18 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  isPlaying: boolean = false;
-  isValume: boolean = true;
+  constructor(readonly music: MusicService) {}
 
-  playPauseButton() {
-    this.isPlaying = !this.isPlaying;
+  seek(event: Event): void {
+    this.music.seekTo(Number((event.target as HTMLInputElement).value));
   }
 
-  volumeClicked() {
-    this.isValume = !this.isValume;
+  setVolume(event: Event): void {
+    this.music.setVolume(Number((event.target as HTMLInputElement).value));
+  }
+
+  formatTime(seconds: number): string {
+    const minutes = Math.floor(seconds / 60);
+    return `${minutes}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
   }
 }

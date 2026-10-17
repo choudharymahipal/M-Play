@@ -1,16 +1,32 @@
-<div class="player" fxLayout="column" fxLayoutAlign="center center">
-    <mat-card>
-      <img mat-card-image [src]="currentSong.albumCover" alt="Album cover">
-      <mat-card-content>
-        <h2>{{ currentSong.title }}</h2>
-        <p>{{ currentSong.artist }}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-icon-button (click)="previousTrack()"><mat-icon>skip_previous</mat-icon></button>
-        <button mat-icon-button (click)="togglePlay()">
-          <mat-icon>{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon>
-        </button>
-        <button mat-icon-button (click)="nextTrack()"><mat-icon>skip_next</mat-icon></button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+<section class="player-page" *ngIf="music.currentTrack$ | async as track; else noTrack">
+  <p class="eyebrow">NOW PLAYING</p>
+  <mat-card class="now-playing">
+    <img mat-card-image [src]="track.artworkUrl" [alt]="track.album + ' artwork'">
+    <mat-card-content>
+      <p class="eyebrow">{{ track.album }}</p>
+      <h1>{{ track.title }}</h1>
+      <p class="artist">{{ track.artist }}</p>
+      <div class="player-actions">
+        <button mat-icon-button (click)="music.toggleFavorite(track)" [attr.aria-label]="music.isFavorite(track) ? 'Remove from library' : 'Save to library'"><mat-icon>{{ music.isFavorite(track) ? 'favorite' : 'favorite_border' }}</mat-icon></button>
+        <button mat-icon-button aria-label="Previous track" (click)="music.previousTrack()"><mat-icon>skip_previous</mat-icon></button>
+        <button mat-fab color="primary" aria-label="Play or pause" (click)="music.togglePlayback()"><mat-icon>{{ (music.isPlaying$ | async) ? 'pause' : 'play_arrow' }}</mat-icon></button>
+        <button mat-icon-button aria-label="Next track" (click)="music.nextTrack()"><mat-icon>skip_next</mat-icon></button>
+      </div>
+      <div class="timeline">
+        <span>{{ formatTime((music.progress$ | async) || 0) }}</span>
+        <mat-slider min="0" [max]="music.duration || 1" step="1" class="seek-slider">
+          <input matSliderThumb [value]="(music.progress$ | async) || 0" (input)="seek($event)">
+        </mat-slider>
+        <span>{{ formatTime((music.duration$ | async) || 0) }}</span>
+      </div>
+      <p class="preview-note">A 30-second preview provided by Apple Music</p>
+    </mat-card-content>
+  </mat-card>
+</section>
+<ng-template #noTrack>
+  <section class="empty-player">
+    <mat-icon>headphones</mat-icon><h1>Your player is ready</h1>
+    <p>Choose a song from the home page or search to start listening.</p>
+    <button mat-flat-button color="primary" routerLink="/search"><mat-icon>search</mat-icon> Find music</button>
+  </section>
+</ng-template>
