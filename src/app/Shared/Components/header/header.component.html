@@ -1,7 +1,7 @@
 <mat-toolbar class="topbar">
   <div class="toolbar-inner">
     <a mat-button class="brand" routerLink="/" aria-label="M-Play home">
-      <span class="brand-mark"><mat-icon>graphic_eq</mat-icon></span><span>m-play</span>
+      <span class="brand-mark"><mat-icon>graphic_eq</mat-icon></span><span class="brand-name">M-Play</span>
     </a>
     <nav class="main-nav" aria-label="Main navigation">
       <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"><mat-icon>home</mat-icon><span>Home</span></a>
@@ -9,7 +9,9 @@
       <a mat-button routerLink="/library" routerLinkActive="active-link"><mat-icon>video_library</mat-icon><span>Your library</span></a>
     </nav>
     <span class="toolbar-spacer"></span>
-    <a mat-icon-button routerLink="/player" matTooltip="Open player" aria-label="Open player"><mat-icon>headphones</mat-icon></a>
-    <button mat-icon-button (click)="toggleTheme()" [matTooltip]="theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'" aria-label="Toggle color theme"><mat-icon>{{ theme === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon></button>
+    <div class="toolbar-actions">
+      <a mat-icon-button routerLink="/player" matTooltip="Open player" aria-label="Open player"><mat-icon>headphones</mat-icon></a>
+      <button mat-icon-button (click)="toggleTheme()" [matTooltip]="theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'" aria-label="Toggle color theme"><mat-icon>{{ theme === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon></button>
+    </div>
   </div>
 </mat-toolbar>

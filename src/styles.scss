@@ -8,6 +8,11 @@ body.light-theme { --background: #f2f5f1; --surface: #ffffff; --bar: #ffffff; --
 .mat-mdc-button:not(:disabled) .mdc-button__label, .mat-mdc-outlined-button:not(:disabled) .mdc-button__label { color: var(--text) !important; }
 .mat-mdc-unelevated-button.mat-primary, .mat-mdc-fab.mat-primary, .mat-mdc-mini-fab.mat-primary { background-color: var(--accent) !important; color: #101310 !important; }
 .mat-mdc-icon-button { color: var(--text); }
+.mat-mdc-icon-button.mat-primary { color: var(--accent) !important; }
+.topbar .brand .mdc-button__label { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.topbar .main-nav .mdc-button__label { display: inline-flex; align-items: center; white-space: nowrap; }
+.topbar .main-nav a.active-link .mdc-button__label { color: #101310 !important; }
+@media (max-width: 560px) { .topbar .brand .mdc-button__label { gap: 3px; } }
 .mat-mdc-form-field { --mdc-outlined-text-field-input-text-color: var(--text); --mdc-outlined-text-field-label-text-color: var(--muted); --mdc-outlined-text-field-outline-color: var(--line); }
 .mat-mdc-slider { --mdc-slider-handle-color: var(--accent); --mdc-slider-focus-handle-color: var(--accent); --mdc-slider-hover-handle-color: var(--accent); --mdc-slider-active-track-color: var(--accent); --mdc-slider-inactive-track-color: var(--line); }
 

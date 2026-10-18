@@ -17,4 +17,15 @@ h1 { font-size: clamp(32px, 4vw, 48px); line-height: 1.08; margin: 0 0 26px; }
 .result-info span { color: var(--muted); font-size: 13px; }
 .no-results { text-align: center; padding: 56px 16px; color: var(--muted); }
 .no-results mat-icon { font-size: 42px; width: 42px; height: 42px; }
-@media (max-width: 600px) { .search-page { padding: 32px 16px; } .result-row { grid-template-columns: 20px 48px minmax(0, 1fr) 38px 38px; gap: 7px; padding: 6px; } .result-row img { width: 48px; height: 48px; } }
+@media (max-width: 600px) {
+	.search-page { padding: 32px 16px; }
+	.result-row { grid-template-columns: 20px 44px minmax(0, 1fr) 40px 40px; gap: 5px; padding: 6px; }
+	.result-row img { width: 44px; height: 44px; }
+	.result-row button[mat-icon-button] { width: 40px; min-width: 40px; height: 40px; padding: 8px; }
+}
+@media (max-width: 360px) {
+	.search-page { padding-right: 12px; padding-left: 12px; }
+	.result-row { grid-template-columns: 16px 40px minmax(0, 1fr) 36px 36px; gap: 3px; padding: 4px; }
+	.result-row img { width: 40px; height: 40px; }
+	.result-row button[mat-icon-button] { width: 36px; min-width: 36px; height: 36px; padding: 6px; }
+}
